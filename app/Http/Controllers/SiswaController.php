@@ -9,9 +9,9 @@ class SiswaController extends Controller
 {
     function index(){
         // $nama = 'Karston Artageana Alexandra';
-        // $jk = 'laki-laki';   
+        // $jk = 'laki-laki';
         // return view('belajar', compact('nama', 'jk'));
-        
+
         // $siswa = DB::table('t_siswa')->where('golongan_darah', '=', 'O')->get();
         $siswa = DB::table('t_siswa')->get();
         return view('belajar', compact('siswa'));

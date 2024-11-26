@@ -14,7 +14,7 @@ Route::get('/', function () {
 
 // Route::get('/belajar', function(){
 //     // echo "Belajar Laravel, tulisan ini ditampilkan dari Routes";
-    
+
 //     // $data['nama'] = 'Fajar';
 //     // $data['jk'] = 'laki-laki';
 //     // return view('belajar', $data);
@@ -32,7 +32,7 @@ Route::get('/', function () {
 //     return view('learn');
 // });
 
-Route::get('/siswa', [SiswaController::class, 'index']);
+Route::get('/siswa', [SiswaController::class, 'index'])->name('siswa');
 Route::get('/siswa/create', [SiswaController::class, 'create']);
 Route::post('/siswa', [SiswaController::class, 'store']);
 Route::get('/siswa/edit/{id}', [SiswaController::class, 'edit']);

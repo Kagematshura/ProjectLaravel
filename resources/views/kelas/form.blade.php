@@ -7,7 +7,7 @@
 @if ($errors->any())
 <div class="alert alert-danger">
     <strong>PERHATIAN!</strong>
-    <br>    
+    <br>
     <ul>
         @foreach ($errors->all() as $error)
         <li>{{$error}}</li>

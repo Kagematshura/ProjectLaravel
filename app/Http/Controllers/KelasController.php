@@ -11,7 +11,7 @@ class KelasController extends Controller
         $kelas = DB::table('t_kelas')->get();
         // $kelas = DB::table('t_kelas')->where('nama_wali_kelas', 'LIKE', 'A%')->get();
         // $kelas = DB::table('t_kelas')->orderBy('jurusan')->orderBy('nama_kelas')->get();
-        // $kelas = DB::table('t_kelas')->where('jurusan', '=', 'Rekayasa Perangkat Lunak')->get(); 
+        // $kelas = DB::table('t_kelas')->where('jurusan', '=', 'Rekayasa Perangkat Lunak')->get();
         return view('learn', compact('kelas'));
     }
 
@@ -20,7 +20,6 @@ class KelasController extends Controller
     }
 
     function store(Request $request){
-
         $request->validate([
             'nama_kelas' => 'required|string|max:100',
             'jurusan' => 'required|string',

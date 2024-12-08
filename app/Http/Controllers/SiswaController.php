@@ -13,8 +13,12 @@ class SiswaController extends Controller
         // return view('belajar', compact('nama', 'jk'));
 
         // $siswa = DB::table('t_siswa')->where('golongan_darah', '=', 'O')->get();
-        $siswa = DB::table('t_siswa')->get();
-        return view('belajar', compact('siswa'));
+
+        // $siswa = DB::table('t_siswa')->get();
+        // return view('belajar', compact('siswa'));
+
+        $data['siswa'] = \App\Models\Siswa::orderBy('jk')->get();
+        return view('belajar');
     }
 
     function create(){
@@ -22,23 +26,31 @@ class SiswaController extends Controller
     }
 
     function store(Request $request){
+    $rule = [
+        'nis' => 'required|numeric',
+        'nama_lengkap' => 'required|string',
+        'jk' => 'required',
+        'golongan_darah' => 'required',
+    ];
+    $this->validate($request, $rule);
+    $input = $request->all();
+    // $status = \App\Models\Siswa::create($input);
 
-        $request->validate([
-            'nis' => 'required|numeric',
-            'nama_lengkap' => 'required|string',
-            'jk' => 'required',
-            'golongan_darah' => 'required',
-        ]);
+        $siswa = new \App\Models\siswa()
+        $siswa -> nis = $input['nis'];
+        $siswa -> nama_lengkap = $input['nama_lengkap'];
+        $siswa -> kelas = $input['kelas'];
+        $siswa -> jenis_kelamin = $input['jenis_kelamin'];
+        $siswa -> jurusan = $input['jurusan'];
+        $siswa -> golongan_darah = $input['golongan_darah'];
 
-        $input = $request->all();
-        unset($input['_token']);
-        $status = DB::table('t_siswa')->insert($input);
-        if($status){
-            return redirect('/siswa')->with('success', 'Data berhasil ditambahkan');
-        }
-        else{
-            return redirect('/siswa/create')->with('error', 'Data gagal ditambahkan');
-        }
+
+    if($status){
+        return redirect('/siswa')->with('success', 'Data berhasil ditambahkan');
+    } else{
+        return redirect('/siswa/create')->with('error', 'Data gagal ditambahkan');
+    }
+
     }
 
     function edit(Request $request, $id)
